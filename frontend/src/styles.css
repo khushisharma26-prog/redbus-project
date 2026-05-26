@@ -1,0 +1,162 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: #222;
+}
+
+
+header {
+  background-color: #d32f2f;
+}
+
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px;
+}
+
+.brand img {
+  height: 48px;
+  width: auto;
+}
+
+
+
+.brand h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff; 
+  letter-spacing: 0.5px;
+}
+
+
+nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 6px 20px; 
+  background-color: #d32f2f;
+}
+
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 4px 6px; 
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+
+nav button {
+  background-color: #ffffff;
+  color: #d32f2f;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+nav button:hover {
+  background-color: #f2f2f2;
+}
+
+hr {
+  margin: 0;
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+}
+
+
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+
+.card {
+  background: #fff;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0 12px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #aaa;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+
+body.dark-mode header,
+body.dark-mode nav {
+  background-color: #000;
+}
+
+body.dark-mode nav a {
+  color: #fff;
+}
+
+body.dark-mode nav button {
+  background-color: #222;
+  color: #fff;
+}
+
+body.dark-mode .card {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #555;
+}
+.brand {
+  align-items: center;
+}
+
+.brand h1 {
+  line-height: 1;
+}

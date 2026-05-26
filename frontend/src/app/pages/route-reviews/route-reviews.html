@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="card">
+    <h2>{{ lang.t('reviews') }}</h2>
+
+<p>
+  {{ lang.t('averageRating') }}: {{ averageRating }}
+</p>
+
+<div *ngFor="let r of reviews">
+  <p><strong>{{ r.userName }}</strong></p>
+  <p>Rating: {{ r.rating }}</p>
+  <p>{{ r.comment }}</p>
+  <hr>
+</div>
+
+<h3>Add Review</h3>
+
+<input [(ngModel)]="newReview.userName" placeholder="Name">
+<input type="number" [(ngModel)]="newReview.rating" min="1" max="5">
+<textarea [(ngModel)]="newReview.comment"></textarea>
+
+<button (click)="submit()">
+  {{ lang.t('submitReview') }}
+</button>
+
+  </div>
+</div>
+
+
+
+

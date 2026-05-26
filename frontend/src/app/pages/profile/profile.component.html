@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="card profile-card">
+    <h2>{{ lang.t('profile') }}</h2>
+
+    <p><strong>{{ lang.t('name') }}:</strong> {{ user.name }}</p>
+    <p><strong>{{ lang.t('email') }}:</strong> {{ user.email }}</p>
+
+    <button (click)="logout()">
+      {{ lang.t('logout') }}
+    </button>
+  </div>
+</div>

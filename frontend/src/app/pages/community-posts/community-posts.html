@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="card">
+   <h2>{{ lang.t('createPost') }}</h2>
+
+<input [(ngModel)]="newPost.userName" placeholder="Your name"><br><br>
+<input [(ngModel)]="newPost.title" placeholder="Title"><br><br>
+<textarea [(ngModel)]="newPost.content" placeholder="Content"></textarea><br><br>
+<input type="file" (change)="onFileChange($event)"><br><br>
+
+<button (click)="submitPost()">
+  {{ lang.t('post') }}
+</button>
+
+
+<hr>
+
+<h2>{{ lang.t('community') }}</h2>
+
+<div *ngFor="let post of posts" class="post-card">
+
+  <h3>{{ post.title }}</h3>
+  <p><strong>{{ post.userName }}</strong></p>
+  <p>{{ post.content }}</p>
+
+  <img
+    *ngIf="post.image"
+    [src]="'http://localhost:5000/uploads/' + post.image"
+    width="250"
+  />
+
+ 
+  <br>
+  <button (click)="like(post._id)">❤️ Like</button>
+  <span>{{ post.likes }} likes</span>
+
+  <h4>Comments</h4>
+
+  <div *ngFor="let c of post.comments">
+    <p><strong>{{ c.userName }}</strong>: {{ c.text }}</p>
+  </div>
+
+  <input
+  placeholder="Your name"
+  [(ngModel)]="newComment[post._id].userName"
+/>
+
+<input
+  placeholder="Write a comment"
+  [(ngModel)]="newComment[post._id].text"
+/>
+
+<button (click)="submitComment(post._id)">Comment</button>
+
+  <hr>
+</div>
+
+  </div>
+</div>
+
+

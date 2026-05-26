@@ -1,0 +1,27 @@
+<div class="card">
+  <h2>Payment</h2>
+
+  <p><strong>Amount:</strong> ₹{{ amount }}</p>
+
+  <label>
+    <input type="radio" name="method" value="upi" [(ngModel)]="paymentData.method">
+    UPI
+  </label>
+
+  <label>
+    <input type="radio" name="method" value="card" [(ngModel)]="paymentData.method">
+    Card
+  </label>
+
+  <div *ngIf="paymentData.method === 'upi'">
+    <input type="text" placeholder="UPI ID" [(ngModel)]="paymentData.upiId">
+  </div>
+
+  <div *ngIf="paymentData.method === 'card'">
+    <input type="text" placeholder="Card Number" [(ngModel)]="paymentData.cardNumber">
+    <input type="text" placeholder="Expiry">
+    <input type="password" placeholder="CVV">
+  </div>
+
+  <button (click)="payNow()">Pay ₹{{ amount }}</button>
+</div>

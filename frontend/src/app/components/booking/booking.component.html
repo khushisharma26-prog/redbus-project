@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="card">
+    <h2>{{ lang.t('bookTicket') }}</h2>
+
+ <form (ngSubmit)="submitBooking()" #bookingForm="ngForm">
+
+<input
+  type="text"
+  [placeholder]="lang.t('name')"
+  [(ngModel)]="bookingData.name"
+  name="name"
+  required
+/>
+
+<input
+  type="email"
+  [placeholder]="lang.t('email')"
+  [(ngModel)]="bookingData.email"
+  name="email"
+  required
+/>
+
+<input
+  type="text"
+  [placeholder]="lang.t('source')"
+  [(ngModel)]="bookingData.source"
+  name="source"
+  required
+/>
+
+<input
+  type="text"
+  [placeholder]="lang.t('destination')"
+  [(ngModel)]="bookingData.destination"
+  name="destination"
+  required
+/>
+
+  <button type="submit">
+  {{ lang.t('confirm') }}
+</button>
+
+</form>
+  </div>
+</div>

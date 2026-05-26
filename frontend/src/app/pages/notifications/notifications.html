@@ -1,0 +1,12 @@
+<h2>{{ lang.t('notifications') }}</h2>
+
+<div class="container">
+  <div class="card" *ngFor="let n of notifications">
+    <p>{{ n.message }}</p>
+    <small>{{ n.createdAt | date:'short' }}</small>
+  </div>
+  <div class="card" *ngIf="notifications.length === 0">
+  No notifications found
+</div>
+
+</div>

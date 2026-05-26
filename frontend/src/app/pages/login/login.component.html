@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="card login-card">
+    <h2>{{ lang.t('login') }}</h2>
+
+    <input
+      type="email"
+      [(ngModel)]="email"
+      [placeholder]="lang.t('email')"
+      required
+    />
+
+    <input
+      type="password"
+      [(ngModel)]="password"
+      [placeholder]="lang.t('password')"
+      required
+    />
+
+    <button (click)="login()">
+      {{ lang.t('login') }}
+    </button>
+
+    <p class="auth-link">
+      {{ lang.t('noAccount') }}
+      <a routerLink="/signup">{{ lang.t('signup') }}</a>
+    </p>
+  </div>
+</div>

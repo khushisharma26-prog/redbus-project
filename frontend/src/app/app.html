@@ -1,0 +1,30 @@
+<header>
+
+  <div class="brand">
+    <img src="redbus-logo.png" alt="RedBus Logo">
+    <h1>{{ lang.t('title') }}</h1>
+  </div>
+
+  <nav>
+    <a routerLink="/routes">{{ lang.t('routes') }}</a> |
+    <a routerLink="/booking">{{ lang.t('bookTicket') }}</a> |
+    <a routerLink="/reviews">{{ lang.t('reviews') }}</a> |
+    <a routerLink="/community">{{ lang.t('community') }}</a> |
+    <a routerLink="/notifications">{{ lang.t('notifications') }}</a> |
+
+     <a routerLink="/login">Login</a> |
+  <a routerLink="/signup">Signup</a>
+
+    <button (click)="toggleDarkMode()">
+      {{ isDarkMode ? '☀️ ' + lang.t('light') : '🌙 ' + lang.t('dark') }}
+    </button>
+
+    <button (click)="toggleLanguage()">
+      🌐 {{ lang.currentLang === 'en' ? 'हिंदी' : 'English' }}
+    </button>
+  </nav>
+
+  <hr />
+</header>
+
+<router-outlet></router-outlet>
