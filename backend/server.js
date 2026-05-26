@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
 
 /* ---------- MongoDB ---------- */
-mongoose.connect('mongodb+srv://khushiiee26_db_user:khushisharma@cluster0.ojp1ebm.mongodb.net/?appName=Cluster0')
+mongoose.connect('mongodb+srv://khushiiee26_db_user:<khushisharma>@cluster0.ojp1ebm.mongodb.net/?appName=Cluster0')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
