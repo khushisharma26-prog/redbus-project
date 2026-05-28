@@ -36,12 +36,12 @@ export class BookingComponent implements OnInit {
   }
 
   submitBooking() {
-    this.http.post('http://localhost:5000/api/bookings', this.bookingData)
+    this.http.post('https://redbus-project-1-zvof.onrender.com', this.bookingData)
       .subscribe({
         next: () => {
           // trigger notification
           this.http.post(
-            'http://localhost:5000/api/notifications/booking',
+            'https://redbus-project-1-zvof.onrender.com',
             { email: this.bookingData.email }
           ).subscribe();
 

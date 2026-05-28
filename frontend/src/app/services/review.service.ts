@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class ReviewService {
-  private API = 'http://localhost:5000/api/reviews';
+  private API = 'https://redbus-project-1-zvof.onrender.com';
 
   constructor(private http: HttpClient) {}
 

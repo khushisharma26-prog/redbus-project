@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommunityService {
 
-  private API = 'http://localhost:5000/api/community';
+  private API = 'https://redbus-project-1-zvof.onrender.com';
 
   constructor(private http: HttpClient) {}
 

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class PostService {
 
-  private API = 'http://localhost:5000/api/posts';
+  private API = 'https://redbus-project-1-zvof.onrender.com';
 
   constructor(private http: HttpClient) {}
 
