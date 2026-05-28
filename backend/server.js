@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 
@@ -18,7 +19,9 @@ app.get('/', (req, res) => {
 });
 
 /* ---------- MongoDB ---------- */
-mongoose.connect('mongodb+srv://khushiiee26_db_user:khushisharma@cluster0.ojp1ebm.mongodb.net/redbus?retryWrites=true&w=majority')
+require('dotenv').config();
+
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
