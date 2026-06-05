@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { LanguageService } from '../../services/language.service';
+import { API_URL } from '../../config';
 
 @Component({
   standalone: true,
@@ -13,8 +14,8 @@ import { LanguageService } from '../../services/language.service';
 })
 export class BookingComponent implements OnInit {
 
-  private API_BOOKINGS = 'http://localhost:5000/api/bookings';
-  private API_NOTIFICATIONS = 'http://localhost:5000/api/notifications';
+  private API_BOOKINGS = `${API_URL}/api/bookings`;
+  private API_NOTIFICATIONS = `${API_URL}/api/notifications`;
 
   bookingData = {
     name: '',
@@ -54,7 +55,6 @@ export class BookingComponent implements OnInit {
     this.http.post(this.API_BOOKINGS, this.bookingData)
       .subscribe({
         next: (res: any) => {
-          // Send booking confirmation notification + email with full details
           this.http.post(this.API_NOTIFICATIONS + '/booking', {
             email: this.bookingData.email,
             name: this.bookingData.name,

@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { API_URL } from '../config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  private API = 'http://localhost:5000/api';
+  private API = `${API_URL}/api`;
 
   constructor(private http: HttpClient) {}
 

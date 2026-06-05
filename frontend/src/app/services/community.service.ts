@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { API_URL } from '../config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommunityService {
 
-  private API = 'http://localhost:5000/api/community';
+  private API = `${API_URL}/api/community`;
 
   constructor(private http: HttpClient) {}
 

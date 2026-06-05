@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { LanguageService } from '../../services/language.service';
 import { AuthService } from '../../services/auth.service';
+import { API_URL } from '../../config';
 
 @Component({
   standalone: true,
@@ -12,8 +13,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NotificationsComponent implements OnInit {
 
-  private API_NOTIFICATIONS = 'http://localhost:5000/api/notifications';
-  private API_BOOKINGS = 'http://localhost:5000/api/bookings';
+  private API_NOTIFICATIONS = `${API_URL}/api/notifications`;
+  private API_BOOKINGS = `${API_URL}/api/bookings`;
 
   notifications: any[] = [];
   bookings: any[] = [];
@@ -36,13 +37,11 @@ export class NotificationsComponent implements OnInit {
       return;
     }
 
-    // Get notifications for this user
     this.http.get<any[]>(`${this.API_NOTIFICATIONS}/${user.email}`)
       .subscribe(notes => {
         this.notifications = notes;
       });
 
-    // Get bookings for this user
     this.http.get<any[]>(`${this.API_BOOKINGS}/${user.email}`)
       .subscribe(bookings => {
         this.bookings = bookings;

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { API_URL } from '../config';
 
 @Injectable({ providedIn: 'root' })
 export class ReviewService {
-  private API = 'http://localhost:5000/api/reviews';
+  private API = `${API_URL}/api/reviews`;
 
   constructor(private http: HttpClient) {}
 
