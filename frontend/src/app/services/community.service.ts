@@ -6,33 +6,23 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommunityService {
 
-  private API = 'https://redbus-project-1-zvof.onrender.com';
+  private API = 'http://localhost:5000/api/community';
 
   constructor(private http: HttpClient) {}
 
-  // GET ALL POSTS
   getPosts() {
     return this.http.get<any[]>(this.API);
   }
 
-  // CREATE POST
   addPost(data: FormData) {
     return this.http.post(this.API, data);
   }
 
-  // ADD COMMENT
   addComment(postId: string, comment: any) {
-    return this.http.post(
-      `${this.API}/${postId}/comments`,
-      comment
-    );
+    return this.http.post(`${this.API}/${postId}/comments`, comment);
   }
 
-  // ❤️ LIKE POST
   likePost(postId: string) {
-    return this.http.post(
-      `${this.API}/${postId}/like`,
-      {}
-    );
+    return this.http.post(`${this.API}/${postId}/like`, {});
   }
 }

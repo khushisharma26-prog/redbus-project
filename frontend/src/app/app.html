@@ -1,5 +1,4 @@
 <header>
-
   <div class="brand">
     <img src="redbus-logo.png" alt="RedBus Logo">
     <h1>{{ lang.t('title') }}</h1>
@@ -12,8 +11,17 @@
     <a routerLink="/community">{{ lang.t('community') }}</a> |
     <a routerLink="/notifications">{{ lang.t('notifications') }}</a> |
 
-     <a routerLink="/login">Login</a> |
-  <a routerLink="/signup">Signup</a>
+    <ng-container *ngIf="auth.isLoggedIn()">
+      <a routerLink="/profile">{{ lang.t('profile') }}</a> |
+      <button class="logout-btn" (click)="logout()">
+        {{ lang.t('logout') }}
+      </button> |
+    </ng-container>
+
+    <ng-container *ngIf="!auth.isLoggedIn()">
+      <a routerLink="/login">Login</a> |
+      <a routerLink="/signup">Signup</a> |
+    </ng-container>
 
     <button (click)="toggleDarkMode()">
       {{ isDarkMode ? '☀️ ' + lang.t('light') : '🌙 ' + lang.t('dark') }}

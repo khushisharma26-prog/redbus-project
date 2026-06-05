@@ -8,8 +8,7 @@ import { LanguageService } from '../../services/language.service';
   selector: 'app-community-posts',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './community-posts.html',
-  styleUrls: ['./community-posts.css']
+  templateUrl: './community-posts.html'
 })
 export class CommunityPostsComponent implements OnInit {
 
@@ -24,6 +23,8 @@ export class CommunityPostsComponent implements OnInit {
   selectedFile: File | null = null;
 
   newComment: any = {};
+
+  message = '';
 
   constructor(
   private service: CommunityService,
@@ -52,6 +53,13 @@ loadPosts(): void {
   }
 
   submitPost(): void {
+    this.message = '';
+    
+    if (!this.newPost.userName || !this.newPost.title || !this.newPost.content) {
+      this.message = 'Please fill all fields';
+      return;
+    }
+    
     const formData = new FormData();
     formData.append('userName', this.newPost.userName);
     formData.append('title', this.newPost.title);
@@ -61,14 +69,19 @@ loadPosts(): void {
       formData.append('image', this.selectedFile);
     }
 
-    this.service.addPost(formData).subscribe(() => {
-      this.newPost = { userName: '', title: '', content: '' };
-      this.selectedFile = null;
-      this.loadPosts();
+    this.service.addPost(formData).subscribe({
+      next: () => {
+        this.newPost = { userName: '', title: '', content: '' };
+        this.selectedFile = null;
+        this.loadPosts();
+        this.message = 'Post created successfully!';
+      },
+      error: () => {
+        this.message = 'Failed to create post';
+      }
     });
   }
 
-  // ❤️ LIKE POST (FIXED POSITION)
   like(postId: string): void {
     this.service.likePost(postId).subscribe(() => {
       this.loadPosts();

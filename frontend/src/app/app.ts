@@ -1,39 +1,34 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet, Router } from '@angular/router';
 import { LanguageService } from './services/language.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, RouterOutlet],
+  imports: [CommonModule, RouterModule, RouterOutlet],
   templateUrl: './app.html'
 })
 export class AppComponent {
 
-  isDarkMode = false;   
+  isDarkMode = false;
 
   constructor(
     public lang: LanguageService,
-    private router: Router
+    public auth: AuthService
   ) {}
 
-
-  isLoggedIn(): boolean {
-    return localStorage.getItem('isLoggedIn') === 'true';
-  }
-
-  logout() {
-  localStorage.removeItem('isLoggedIn');
-  this.router.navigate(['/login']);
-}
-
-
   toggleDarkMode() {
-    this.isDarkMode = !this.isDarkMode;   
+    this.isDarkMode = !this.isDarkMode;
     document.body.classList.toggle('dark-mode', this.isDarkMode);
   }
 
   toggleLanguage() {
     this.lang.toggleLanguage();
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }

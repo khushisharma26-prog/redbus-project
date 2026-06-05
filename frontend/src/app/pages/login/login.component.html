@@ -1,28 +1,45 @@
-<div class="container">
-  <div class="card login-card">
-    <h2>{{ lang.t('login') }}</h2>
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <img src="redbus-logo.png" alt="RedBus" class="auth-logo" />
+      <h2>{{ lang.t('login') }}</h2>
+    </div>
 
-    <input
-      type="email"
-      [(ngModel)]="email"
-      [placeholder]="lang.t('email')"
-      required
-    />
+    <div class="auth-body">
+      <div class="error-message" *ngIf="error">
+        {{ error }}
+      </div>
 
-    <input
-      type="password"
-      [(ngModel)]="password"
-      [placeholder]="lang.t('password')"
-      required
-    />
+      <div class="input-group">
+        <label for="email">{{ lang.t('email') }}</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="email"
+          [placeholder]="'Enter ' + lang.t('email')"
+          required
+        />
+      </div>
 
-    <button (click)="login()">
-      {{ lang.t('login') }}
-    </button>
+      <div class="input-group">
+        <label for="password">{{ lang.t('password') }}</label>
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="password"
+          [placeholder]="'Enter ' + lang.t('password')"
+          required
+        />
+      </div>
 
-    <p class="auth-link">
-      {{ lang.t('noAccount') }}
-      <a routerLink="/signup">{{ lang.t('signup') }}</a>
-    </p>
+      <button class="auth-btn" (click)="login()" [disabled]="loading">
+        <span *ngIf="!loading">{{ lang.t('login') }}</span>
+        <span *ngIf="loading">Loading...</span>
+      </button>
+    </div>
+
+    <div class="auth-footer">
+      <p>{{ lang.t('noAccount') }} <a routerLink="/signup">{{ lang.t('signup') }}</a></p>
+    </div>
   </div>
 </div>

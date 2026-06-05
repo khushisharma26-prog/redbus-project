@@ -26,20 +26,26 @@ router.get('/:email', async (req, res) => {
 
 /* ===============================
    BOOKING CONFIRMATION
-================================ */
+=============================== */
 router.post('/booking', async (req, res) => {
-  const { email } = req.body;
+  try {
+    const { email, name, source, destination, date } = req.body;
 
-  const note = new Notification({
-    userEmail: email,
-    message: 'Your bus booking is confirmed!',
-    type: 'booking'
-  });
+    const message = `Hey ${name || 'User'}, your bus ticket is confirmed from ${source} to ${destination} on ${date || 'the scheduled date'}. Happy journey! 🚌`;
 
-  await note.save();
-  await sendEmail(email, 'Booking Confirmed', note.message);
+    const note = new Notification({
+      userEmail: email,
+      message,
+      type: 'booking'
+    });
 
-  res.json({ message: 'Booking notification sent' });
+    await note.save();
+    await sendEmail(email, 'Booking Confirmed 🚌', message);
+
+    res.json({ message: 'Booking notification sent', notification: note });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to send notification' });
+  }
 });
 
 /* ===============================

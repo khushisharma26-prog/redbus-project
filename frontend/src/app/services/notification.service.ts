@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
-  private API = 'https://redbus-project-1-zvof.onrender.com';
+  private API = 'http://localhost:5000/api/notifications';
 
   constructor(private http: HttpClient) {}
 

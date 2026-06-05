@@ -1,35 +1,70 @@
-<div class="container">
-  <div class="card login-card">
-    <h2>{{ lang.t('signup') }}</h2>
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <img src="redbus-logo.png" alt="RedBus" class="auth-logo" />
+      <h2>{{ lang.t('signup') }}</h2>
+    </div>
 
-    <input
-      type="text"
-      [(ngModel)]="user.name"
-      [placeholder]="lang.t('name')"
-      required
-    />
+    <div class="auth-body">
+      <div class="error-message" *ngIf="error">
+        {{ error }}
+      </div>
+      <div class="success-message" *ngIf="success">
+        {{ success }}
+      </div>
 
-    <input
-      type="email"
-      [(ngModel)]="user.email"
-      [placeholder]="lang.t('email')"
-      required
-    />
+      <div class="input-group">
+        <label for="name">{{ lang.t('name') }}</label>
+        <input
+          id="name"
+          type="text"
+          [(ngModel)]="user.name"
+          [placeholder]="'Enter ' + lang.t('name')"
+          required
+        />
+      </div>
 
-    <input
-      type="password"
-      [(ngModel)]="user.password"
-      [placeholder]="lang.t('password')"
-      required
-    />
+      <div class="input-group">
+        <label for="email">{{ lang.t('email') }}</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="user.email"
+          [placeholder]="'Enter ' + lang.t('email')"
+          required
+        />
+      </div>
 
-    <button (click)="signup()">
-      {{ lang.t('signup') }}
-    </button>
+      <div class="input-group">
+        <label for="password">{{ lang.t('password') }}</label>
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="user.password"
+          [placeholder]="'Enter ' + lang.t('password')"
+          required
+        />
+      </div>
 
-    <p class="auth-link">
-      {{ lang.t('alreadyAccount') }}
-      <a routerLink="/login">{{ lang.t('login') }}</a>
-    </p>
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          [(ngModel)]="confirmPassword"
+          placeholder="Confirm your password"
+          required
+        />
+      </div>
+
+      <button class="auth-btn" (click)="signup()" [disabled]="loading">
+        <span *ngIf="!loading">{{ lang.t('signup') }}</span>
+        <span *ngIf="loading">Creating Account...</span>
+      </button>
+    </div>
+
+    <div class="auth-footer">
+      <p>{{ lang.t('alreadyAccount') }} <a routerLink="/login">{{ lang.t('login') }}</a></p>
+    </div>
   </div>
 </div>

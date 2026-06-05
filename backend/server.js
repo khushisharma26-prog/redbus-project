@@ -9,7 +9,7 @@ const app = express();
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type']
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
@@ -29,6 +29,7 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('MongoDB connection error:', err));
 
 /* ---------- Routes ---------- */
+app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/community', require('./routes/communityRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 app.use('/api/routes', require('./routes/routeRoutes'));

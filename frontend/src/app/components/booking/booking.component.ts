@@ -13,6 +13,9 @@ import { LanguageService } from '../../services/language.service';
 })
 export class BookingComponent implements OnInit {
 
+  private API_BOOKINGS = 'http://localhost:5000/api/bookings';
+  private API_NOTIFICATIONS = 'http://localhost:5000/api/notifications';
+
   bookingData = {
     name: '',
     email: '',
@@ -20,6 +23,9 @@ export class BookingComponent implements OnInit {
     destination: '',
     date: ''
   };
+
+  message = '';
+  loading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,20 +42,46 @@ export class BookingComponent implements OnInit {
   }
 
   submitBooking() {
-    this.http.post('https://redbus-project-1-zvof.onrender.com', this.bookingData)
-      .subscribe({
-        next: () => {
-          // trigger notification
-          this.http.post(
-            'https://redbus-project-1-zvof.onrender.com',
-            { email: this.bookingData.email }
-          ).subscribe();
+    this.loading = true;
+    this.message = '';
 
-          // go to payment page
-          this.router.navigate(['/payment']);
+    if (!this.bookingData.name || !this.bookingData.email || !this.bookingData.date) {
+      this.message = 'Please fill in all required fields';
+      this.loading = false;
+      return;
+    }
+
+    this.http.post(this.API_BOOKINGS, this.bookingData)
+      .subscribe({
+        next: (res: any) => {
+          // Send booking confirmation notification + email with full details
+          this.http.post(this.API_NOTIFICATIONS + '/booking', {
+            email: this.bookingData.email,
+            name: this.bookingData.name,
+            source: this.bookingData.source,
+            destination: this.bookingData.destination,
+            date: this.bookingData.date
+          })
+            .subscribe({
+              next: () => {
+                this.loading = false;
+                this.message = 'Booking successful! Redirecting to payment...';
+                setTimeout(() => {
+                  this.router.navigate(['/payment']);
+                }, 2000);
+              },
+              error: () => {
+                this.loading = false;
+                this.message = 'Booking successful! Redirecting to payment...';
+                setTimeout(() => {
+                  this.router.navigate(['/payment']);
+                }, 2000);
+              }
+            });
         },
-        error: () => {
-          alert('Booking failed');
+        error: (err) => {
+          this.loading = false;
+          this.message = 'Booking failed. Please try again.';
         }
       });
   }

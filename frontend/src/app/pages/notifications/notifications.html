@@ -1,12 +1,43 @@
-<h2>{{ lang.t('notifications') }}</h2>
-
 <div class="container">
-  <div class="card" *ngFor="let n of notifications">
-    <p>{{ n.message }}</p>
-    <small>{{ n.createdAt | date:'short' }}</small>
-  </div>
-  <div class="card" *ngIf="notifications.length === 0">
-  No notifications found
-</div>
+  <div class="card">
+    <h2>Your Bookings</h2>
 
+    <div *ngIf="loading">Loading...</div>
+
+    <div *ngIf="!loading && bookings.length === 0">
+      <p style="color:#888;">No bookings yet. Go to Routes to book a ticket!</p>
+    </div>
+
+    <div *ngFor="let booking of bookings" class="booking-item">
+      <div class="booking-icon">🚌</div>
+      <div class="booking-details">
+        <p><strong>{{ booking.name }}</strong></p>
+        <p>From <strong>{{ booking.source }}</strong> → To <strong>{{ booking.destination }}</strong></p>
+        <p>Date: {{ booking.date }}</p>
+        <p class="booking-status">✅ Confirmed</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <h2>{{ lang.t('notifications') }}</h2>
+
+    <div *ngIf="notifications.length === 0">
+      <p style="color:#888;">No notifications yet.</p>
+    </div>
+
+    <div *ngFor="let note of notifications" class="notification-item">
+      <div class="notification-icon">
+        <span *ngIf="note.type === 'booking'">✅</span>
+        <span *ngIf="note.type === 'cancel'">❌</span>
+        <span *ngIf="note.type === 'promo'">🎉</span>
+        <span *ngIf="note.type === 'reminder'">⏰</span>
+        <span *ngIf="!note.type">📢</span>
+      </div>
+      <div class="notification-details">
+        <p>{{ note.message }}</p>
+        <small>{{ note.createdAt | date:'medium' }}</small>
+      </div>
+    </div>
+  </div>
 </div>

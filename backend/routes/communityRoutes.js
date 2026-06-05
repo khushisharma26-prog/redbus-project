@@ -37,8 +37,6 @@ router.get('/', async (req, res) => {
   res.json(posts);
 });
 
-module.exports = router;
-
 // ADD COMMENT
 router.post('/:id/comments', async (req, res) => {
   try {
@@ -74,9 +72,11 @@ router.post('/:id/like', async (req, res) => {
     post.likes = post.likes + 1; // important
     await post.save();
 
-    res.json({ likes: post.likes });
+  res.json({ likes: post.likes });
   } catch (err) {
     res.status(500).json({ message: 'Failed to like post' });
   }
 });
+
+module.exports = router;
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   standalone: true,
@@ -11,18 +12,20 @@ import { LanguageService } from '../../services/language.service';
 })
 export class ProfileComponent {
 
-  user = {
-    name: 'Khushi Sharma',
-    email: 'khushi@example.com'
-  };
+  user: any = { name: '', email: '' };
 
   constructor(
     public lang: LanguageService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private auth: AuthService
+  ) {
+    const currentUser = this.auth.getCurrentUserFromStorage();
+    if (currentUser) {
+      this.user = currentUser;
+    }
+  }
 
   logout() {
-    localStorage.removeItem('isLoggedIn');
-    this.router.navigate(['/login']);
+    this.auth.logout();
   }
 }

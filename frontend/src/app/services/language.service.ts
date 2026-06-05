@@ -30,7 +30,8 @@ export class LanguageService {
   password: 'Password',
   noAccount: "Don't have an account?",
   profile: 'My Profile',
-  logout: 'Logout'
+  logout: 'Logout',
+  alreadyAccount: 'Already have an account?'
 },
 hi: {
   title: 'रेड बस',
@@ -54,7 +55,8 @@ hi: {
   password: 'पासवर्ड',
   noAccount: 'खाता नहीं है?',
   profile: 'मेरी प्रोफ़ाइल',
-  logout: 'लॉगआउट'
+  logout: 'लॉगआउट',
+  alreadyAccount: 'पहले से खाता है?'
   
 }
   };
